@@ -1,0 +1,106 @@
+<resources>
+    <string name="app_name">NetDiag</string>
+    <string name="app_tagline">专业网络诊断与链路遥测</string>
+    
+    <!-- Navigation / Tabs -->
+    <string name="tab_overview">全览概况</string>
+    <string name="tab_ping">Ping 测试</string>
+    <string name="tab_tcp">TCP 握手</string>
+    <string name="tab_dns">DNS 耗时</string>
+    <string name="tab_trace">路由追踪</string>
+    <string name="tab_history">历史报告</string>
+
+    <!-- Network Info Cards -->
+    <string name="net_info_title">网络接口信息</string>
+    <string name="net_type">连接网络类型</string>
+    <string name="net_local_ip">内网 IP</string>
+    <string name="net_local_ipv6">IPv6 地址</string>
+    <string name="net_gateway">网关 IP</string>
+    <string name="net_local_dns">Local DNS (本地域名服务器)</string>
+    <string name="net_wifi_ssid">Wi-Fi SSID</string>
+    <string name="net_link_speed">链路速度</string>
+    <string name="net_status_connected">已连接</string>
+    <string name="net_status_disconnected">未连接网络</string>
+    <string name="net_refresh">刷新网络信息</string>
+
+    <!-- Actions & Common -->
+    <string name="btn_start">开始测试</string>
+    <string name="btn_stop">停止</string>
+    <string name="btn_run_full_diag">一键全套网络体检</string>
+    <string name="btn_export">导出报告</string>
+    <string name="btn_share">分享报告</string>
+    <string name="btn_copy">复制结果</string>
+    <string name="btn_clear">清空</string>
+    <string name="btn_deeplink_info">快捷链接 (DeepLink)</string>
+    <string name="target_host">目标主机 / 域名 / IP</string>
+    <string name="target_port">端口号</string>
+    <string name="status_ready">就绪</string>
+    <string name="status_running">测试中...</string>
+    <string name="status_completed">测试完成</string>
+    <string name="status_error">测试失败</string>
+
+    <!-- Ping -->
+    <string name="ping_title">ICMP Ping 延迟与丢包测试</string>
+    <string name="ping_packet_count">发包数</string>
+    <string name="ping_stats_summary">Ping 统计分析</string>
+    <string name="ping_transmitted">发送包</string>
+    <string name="ping_received">接收包</string>
+    <string name="ping_loss">丢包率</string>
+    <string name="ping_min">最低延迟</string>
+    <string name="ping_avg">平均延迟</string>
+    <string name="ping_max">最高延迟</string>
+    <string name="ping_mdev">抖动/方差</string>
+    <string name="ping_seq">序号</string>
+    <string name="ping_time">耗时</string>
+    <string name="ping_ttl">TTL</string>
+
+    <!-- TCP Connect -->
+    <string name="tcp_title">TCP Connect 握手耗时测试</string>
+    <string name="tcp_desc">测试目标主机及端口的三次握手往返延迟</string>
+    <string name="tcp_handshake">握手耗时</string>
+    <string name="tcp_status">连接状态</string>
+    <string name="tcp_remote_ip">解析目标 IP</string>
+    <string name="tcp_preset_http">HTTP (80)</string>
+    <string name="tcp_preset_https">HTTPS (443)</string>
+    <string name="tcp_preset_dns">DNS (53)</string>
+    <string name="tcp_preset_ssh">SSH (22)</string>
+
+    <!-- DNS Benchmark -->
+    <string name="dns_title">Local DNS 提取与解析耗时对比</string>
+    <string name="dns_local_header">当前设备 Local DNS</string>
+    <string name="dns_benchmark_header">公共 DNS 耗时横向测评</string>
+    <string name="dns_query_domain">查询域名</string>
+    <string name="dns_resolved_records">解析记录 IP</string>
+    <string name="dns_resolve_time">解析耗时</string>
+
+    <!-- Traceroute -->
+    <string name="trace_title">Traceroute 路由链路追踪</string>
+    <string name="trace_hop">跳数 (Hop)</string>
+    <string name="trace_ip">节点 IP</string>
+    <string name="trace_hostname">反向解析 / PTR</string>
+    <string name="trace_rtt">往返延迟</string>
+    <string name="trace_destination_reached">已到达目标主机</string>
+
+    <!-- Reports & History -->
+    <string name="history_title">测试报告与历史记录</string>
+    <string name="history_empty">暂无历史测试记录，执行测试后将自动归档。</string>
+    <string name="report_detail_title">网络诊断报告</string>
+    <string name="export_json">导出为 JSON</string>
+    <string name="export_text">导出为文本报告</string>
+    <string name="toast_copied">已复制到剪贴板</string>
+    <string name="confirm_clear_history">确认清空所有历史诊断记录？</string>
+
+    <!-- Deeplink -->
+    <string name="deeplink_title">Deep Link 快捷启动</string>
+    <string name="deeplink_desc">可通过外部 URL 链接、自动化捷径或命令行即时拉起特定测试：</string>
+    <string name="deeplink_sample_ping">netdiag://test?type=ping&amp;host=1.1.1.1</string>
+    <string name="deeplink_sample_tcp">netdiag://test?type=tcp&amp;host=google.com&amp;port=443</string>
+    <string name="deeplink_sample_dns">netdiag://test?type=dns&amp;host=github.com</string>
+    <string name="deeplink_sample_trace">netdiag://test?type=traceroute&amp;host=8.8.8.8</string>
+    <string name="deeplink_sample_full">netdiag://test?type=fulldiag&amp;host=cloudflare.com</string>
+
+    <!-- Language -->
+    <string name="language_switch">语言 / Language</string>
+    <string name="lang_english">English</string>
+    <string name="lang_chinese">简体中文</string>
+</resources>

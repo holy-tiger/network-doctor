@@ -1,0 +1,106 @@
+<resources>
+    <string name="app_name">NetDiag</string>
+    <string name="app_tagline">Network Diagnostics &amp; Telemetry</string>
+    
+    <!-- Navigation / Tabs -->
+    <string name="tab_overview">Overview</string>
+    <string name="tab_ping">Ping</string>
+    <string name="tab_tcp">TCP Connect</string>
+    <string name="tab_dns">DNS Latency</string>
+    <string name="tab_trace">Traceroute</string>
+    <string name="tab_history">History</string>
+
+    <!-- Network Info Cards -->
+    <string name="net_info_title">Network Interface</string>
+    <string name="net_type">Network Type</string>
+    <string name="net_local_ip">Local IP</string>
+    <string name="net_local_ipv6">IPv6 Address</string>
+    <string name="net_gateway">Gateway IP</string>
+    <string name="net_local_dns">Local DNS Servers</string>
+    <string name="net_wifi_ssid">Wi-Fi SSID</string>
+    <string name="net_link_speed">Link Speed</string>
+    <string name="net_status_connected">Connected</string>
+    <string name="net_status_disconnected">Disconnected</string>
+    <string name="net_refresh">Refresh Network Info</string>
+
+    <!-- Actions & Common -->
+    <string name="btn_start">Start Test</string>
+    <string name="btn_stop">Stop</string>
+    <string name="btn_run_full_diag">Run Full Diagnostic</string>
+    <string name="btn_export">Export Report</string>
+    <string name="btn_share">Share</string>
+    <string name="btn_copy">Copy</string>
+    <string name="btn_clear">Clear</string>
+    <string name="btn_deeplink_info">Deep Link</string>
+    <string name="target_host">Target Host or IP</string>
+    <string name="target_port">Port</string>
+    <string name="status_ready">Ready</string>
+    <string name="status_running">Running...</string>
+    <string name="status_completed">Completed</string>
+    <string name="status_error">Error</string>
+
+    <!-- Ping -->
+    <string name="ping_title">ICMP Ping Test</string>
+    <string name="ping_packet_count">Packets</string>
+    <string name="ping_stats_summary">Ping Statistics</string>
+    <string name="ping_transmitted">Transmitted</string>
+    <string name="ping_received">Received</string>
+    <string name="ping_loss">Packet Loss</string>
+    <string name="ping_min">Min</string>
+    <string name="ping_avg">Avg</string>
+    <string name="ping_max">Max</string>
+    <string name="ping_mdev">Jitter/Mdev</string>
+    <string name="ping_seq">Seq</string>
+    <string name="ping_time">Time</string>
+    <string name="ping_ttl">TTL</string>
+
+    <!-- TCP Connect -->
+    <string name="tcp_title">TCP Connect Latency</string>
+    <string name="tcp_desc">Measure three-way handshake time to specified port</string>
+    <string name="tcp_handshake">Handshake RTT</string>
+    <string name="tcp_status">TCP Status</string>
+    <string name="tcp_remote_ip">Resolved IP</string>
+    <string name="tcp_preset_http">HTTP (80)</string>
+    <string name="tcp_preset_https">HTTPS (443)</string>
+    <string name="tcp_preset_dns">DNS (53)</string>
+    <string name="tcp_preset_ssh">SSH (22)</string>
+
+    <!-- DNS Benchmark -->
+    <string name="dns_title">DNS Resolution Benchmark</string>
+    <string name="dns_local_header">Extracted Local DNS</string>
+    <string name="dns_benchmark_header">Public DNS Benchmark Comparison</string>
+    <string name="dns_query_domain">Domain to Resolve</string>
+    <string name="dns_resolved_records">Resolved Records</string>
+    <string name="dns_resolve_time">Lookup Duration</string>
+
+    <!-- Traceroute -->
+    <string name="trace_title">Traceroute Link Probe</string>
+    <string name="trace_hop">Hop</string>
+    <string name="trace_ip">Hop IP</string>
+    <string name="trace_hostname">Hostname / PTR</string>
+    <string name="trace_rtt">Latency</string>
+    <string name="trace_destination_reached">Target Reached</string>
+
+    <!-- Reports & History -->
+    <string name="history_title">Diagnostic Reports &amp; History</string>
+    <string name="history_empty">No diagnostic reports yet. Run a test to view history.</string>
+    <string name="report_detail_title">Diagnostic Report</string>
+    <string name="export_json">Export JSON</string>
+    <string name="export_text">Export Text Report</string>
+    <string name="toast_copied">Copied to clipboard</string>
+    <string name="confirm_clear_history">Clear all history records?</string>
+
+    <!-- Deeplink -->
+    <string name="deeplink_title">Deep Link Fast Launch</string>
+    <string name="deeplink_desc">Launch specific diagnostics automatically with URL:</string>
+    <string name="deeplink_sample_ping">netdiag://test?type=ping&amp;host=1.1.1.1</string>
+    <string name="deeplink_sample_tcp">netdiag://test?type=tcp&amp;host=google.com&amp;port=443</string>
+    <string name="deeplink_sample_dns">netdiag://test?type=dns&amp;host=github.com</string>
+    <string name="deeplink_sample_trace">netdiag://test?type=traceroute&amp;host=8.8.8.8</string>
+    <string name="deeplink_sample_full">netdiag://test?type=fulldiag&amp;host=cloudflare.com</string>
+
+    <!-- Language -->
+    <string name="language_switch">Language / 语言</string>
+    <string name="lang_english">English</string>
+    <string name="lang_chinese">简体中文</string>
+</resources>

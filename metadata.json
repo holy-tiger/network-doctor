@@ -1,0 +1,6 @@
+{
+  "name": "NetDiag",
+  "description": "Professional network diagnostic tool with Local DNS extraction, Ping, TCP Connect, DNS benchmark, Traceroute, and exportable reports.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

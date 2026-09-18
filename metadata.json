@@ -1,6 +1,6 @@
 {
-  "name": "NetDiag",
-  "description": "Professional network diagnostic tool with Local DNS extraction, Ping, TCP Connect, DNS benchmark, Traceroute, and exportable reports.",
+  "name": "DNS & Server Check",
+  "description": "DNS resolution, TLS certificate, TCP connectivity, and server HTTP diagnostic suite with multi-language and Arabic RTL support.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

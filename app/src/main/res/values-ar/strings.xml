@@ -1,0 +1,180 @@
+<resources>
+    <string name="app_name">DNS &amp; فاحص الخوادم</string>
+    <string name="app_subtitle">تشخيص فحص DNS والاتصال بالخادم</string>
+    <string name="app_tagline">فحص تشخيصي لشبكات DNS وTLS والخوادم</string>
+    
+    <!-- Header & Languages -->
+    <string name="snapshot_btn">لقطة</string>
+    <string name="lang_arabic">العربية</string>
+    <string name="lang_english">English</string>
+    <string name="lang_chinese">简体中文</string>
+    <string name="language_switch">تغيير اللغة</string>
+
+    <!-- Navigation / Tabs -->
+    <string name="tab_dns_server">فحص DNS والخوادم</string>
+    <string name="tab_overview">نظرة عامة</string>
+    <string name="tab_ping">اختبار Ping</string>
+    <string name="tab_tcp">اتصال TCP</string>
+    <string name="tab_dns">مقارنة DNS</string>
+    <string name="tab_trace">تتبع المسار</string>
+    <string name="tab_history">السجل والتقارير</string>
+
+    <!-- Target input card -->
+    <string name="target_input_title">عناوين أو نطاقات الهدف للفحص</string>
+    <string name="target_input_subtitle">يدعم إدخال النطاقات أو عناوين URL أو IP، سطر لكل عنوان أو مفصولة بفواصل</string>
+    <string name="btn_generate_test_link">إنشاء رابط</string>
+    <string name="btn_advanced_settings">إعدادات متقدمة</string>
+    <string name="btn_clear_input">مسح</string>
+    <string name="ready_addresses_count">جاهز %1$d عناوين</string>
+    <string name="quick_presets_title">إعدادات مسبقة سريعة</string>
+    <string name="preset_healthy_domains">نطاقات سليمة شائعة</string>
+    <string name="preset_anomaly_domains">مجموعة اختبار الأعطال</string>
+    <string name="btn_start_full_inspection">بدء التشخيص</string>
+    <string name="btn_stop_inspection">إيقاف التشخيص</string>
+    <string name="jump_to_results">عرض النتائج (%1$d) ▾</string>
+
+    <!-- Summary Stats -->
+    <string name="stat_total_targets">إجمالي العناوين</string>
+    <string name="stat_healthy_connected">متصل وسليم</string>
+    <string name="stat_abnormal_failed">غير طبيعي / فاشل</string>
+    <string name="stat_avg_latency">متوسط الوقت الإجمالي</string>
+
+    <!-- Filter & Action Bar -->
+    <string name="filter_all">الكل (%1$d)</string>
+    <string name="filter_failed">الفاشلة فقط (%1$d)</string>
+    <string name="filter_healthy">السليمة فقط (%1$d)</string>
+    <string name="search_placeholder">بحث عن نطاق أو IP...</string>
+    <string name="btn_copy_brief">نسخ الملخص</string>
+    <string name="btn_export_json">تصدير JSON</string>
+    <string name="btn_save_report">حفظ النتيجة</string>
+
+    <!-- Results List -->
+    <string name="results_list_title">قائمة النتائج (عرض %1$d / %2$d)</string>
+    <string name="view_full_markdown_report">عرض تقرير Markdown الكامل ➔</string>
+    <string name="badge_status_healthy">متصل وسليم</string>
+    <string name="badge_status_failed">فشل الاتصال / غير طبيعي</string>
+    <string name="metric_dns_resolution">تحليل DNS</string>
+    <string name="metric_tcp_connect">اتصال TCP</string>
+    <string name="metric_tls_cert">شهادة TLS</string>
+    <string name="metric_http_response">استجابة HTTP</string>
+    <string name="status_ok">طبيعي</string>
+    <string name="status_fail">فشل</string>
+    <string name="status_warning">تحذير</string>
+    <string name="status_not_tested">لم يتم</string>
+    <string name="cert_valid_days">صالح لمدة %1$d يوماً</string>
+    <string name="cert_expired">منتهية الصلاحية</string>
+    <string name="port_prefix">المنفذ: %1$d</string>
+    <string name="http_status_prefix">حالة HTTP: %1$s</string>
+    <string name="resolved_ip_label">IP المحلل:</string>
+    <string name="expand_tech_details">توسيع التفاصيل التقنية (A/AAAA/شهادة/ترويسة) ▾</string>
+    <string name="collapse_tech_details">طي التفاصيل التقنية ▴</string>
+
+    <!-- Network Info Cards -->
+    <string name="net_info_title">معلومات واجهة الشبكة</string>
+    <string name="net_type">نوع الشبكة</string>
+    <string name="net_local_ip">IP المحلي</string>
+    <string name="net_local_ipv6">عنوان IPv6</string>
+    <string name="net_gateway">عنوان البوابة</string>
+    <string name="net_local_dns">خوادم DNS المحلية</string>
+    <string name="net_wifi_ssid">معرف Wi-Fi</string>
+    <string name="net_link_speed">سرعة الاتصال</string>
+    <string name="net_status_connected">متصل</string>
+    <string name="net_status_disconnected">غير متصل</string>
+    <string name="net_refresh">تحديث معلومات الشبكة</string>
+
+    <!-- Actions & Common -->
+    <string name="btn_start">بدء الاختبار</string>
+    <string name="btn_stop">إيقاف</string>
+    <string name="btn_run_full_diag">إجراء فحص شبكة كامل</string>
+    <string name="btn_export">تصدير التقرير</string>
+    <string name="btn_share">مشاركة</string>
+    <string name="btn_copy">نسخ</string>
+    <string name="btn_clear">مسح</string>
+    <string name="btn_deeplink_info">رابط مباشر</string>
+    <string name="target_host">المضيف أو IP</string>
+    <string name="target_port">المنفذ</string>
+    <string name="status_ready">جاهز</string>
+    <string name="status_running">قيد الفحص...</string>
+    <string name="status_completed">اكتمل</string>
+    <string name="status_error">خطأ</string>
+
+    <!-- Ping -->
+    <string name="ping_title">اختبار ICMP Ping</string>
+    <string name="ping_packet_count">عدد الحزم</string>
+    <string name="ping_stats_summary">إحصائيات Ping</string>
+    <string name="ping_transmitted">المُرسلة</string>
+    <string name="ping_received">المُستلمة</string>
+    <string name="ping_loss">فقدان الحزم</string>
+    <string name="ping_min">الأدنى</string>
+    <string name="ping_avg">المتوسط</string>
+    <string name="ping_max">الأقصى</string>
+    <string name="ping_mdev">الاهتزاز</string>
+    <string name="ping_seq">تسلسل</string>
+    <string name="ping_time">الوقت</string>
+    <string name="ping_ttl">TTL</string>
+
+    <!-- TCP Connect -->
+    <string name="tcp_title">وقت مصافحة TCP</string>
+    <string name="tcp_desc">قياس وقت المصافحة الثلاثية للمنفذ المحدد</string>
+    <string name="tcp_handshake">زمن المصافحة</string>
+    <string name="tcp_status">حالة TCP</string>
+    <string name="tcp_remote_ip">IP الهدف</string>
+    <string name="tcp_preset_http">HTTP (80)</string>
+    <string name="tcp_preset_https">HTTPS (443)</string>
+    <string name="tcp_preset_dns">DNS (53)</string>
+    <string name="tcp_preset_ssh">SSH (22)</string>
+
+    <!-- DNS Benchmark -->
+    <string name="dns_title">مقارنة سرعة تحليل DNS</string>
+    <string name="dns_local_header">DNS المحلي للجهاز</string>
+    <string name="dns_benchmark_header">مقارنة أداء خوادم DNS العامة</string>
+    <string name="dns_query_domain">نطاق الاستعلام</string>
+    <string name="dns_resolved_records">السجلات المحللة</string>
+    <string name="dns_resolve_time">زمن التحليل</string>
+
+    <!-- Traceroute -->
+    <string name="trace_title">تتبع مسار الحزم (Traceroute)</string>
+    <string name="trace_hop">القفزة</string>
+    <string name="trace_ip">IP القفزة</string>
+    <string name="trace_hostname">اسم المضيف / PTR</string>
+    <string name="trace_rtt">زمن الذهاب والإياب</string>
+    <string name="trace_destination_reached">تم الوصول للهدف</string>
+
+    <!-- Reports & History -->
+    <string name="history_title">تقارير التشخيص والسجل</string>
+    <string name="history_empty">لا توجد تقارير سابقة. ابدأ فحصاً لعرض السجل.</string>
+    <string name="report_detail_title">تقرير تشخيص الشبكة</string>
+    <string name="export_json">تصدير بتنسيق JSON</string>
+    <string name="export_text">تصدير نصي</string>
+    <string name="toast_copied">تم النسخ إلى الحافظة</string>
+    <string name="confirm_clear_history">هل تريد مسح جميع سجلات التشخيص؟</string>
+
+    <!-- Deeplink -->
+    <string name="deeplink_title">تشغيل سريع برابط مباشر</string>
+    <string name="deeplink_desc">تشغيل فحص معين تلقائياً عبر الرابط:</string>
+    <string name="deeplink_sample_ping">netdiag://test?type=ping&amp;host=1.1.1.1</string>
+    <string name="deeplink_sample_tcp">netdiag://test?type=tcp&amp;host=google.com&amp;port=443</string>
+    <string name="deeplink_sample_dns">netdiag://test?type=dns&amp;host=github.com</string>
+    <string name="deeplink_sample_trace">netdiag://test?type=traceroute&amp;host=8.8.8.8</string>
+    <string name="deeplink_sample_full">netdiag://test?type=fulldiag&amp;host=cloudflare.com</string>
+    <string name="deeplink_generated_title">تم إنشاء رابط الاختبار المباشر</string>
+    <string name="deeplink_generated_hint">تم إنشاء رابط تشخيص عميق مشفر بـ Base64 آمن لـ URL. سيؤدي فتح هذا الرابط إلى الانتقال تلقائيًا إلى فحص DNS والبدء في الفحص:</string>
+    <string name="generate_dialog_title">إنشاء رابط الفحص المباشر (DeepLink)</string>
+    <string name="generate_dialog_desc">يمكنك إدخال عنوان واجهة الإبلاغ عند اكتمال الفحص. سيتم تشفير كل من قائمة العناوين ورابط الإبلاغ باستخدام Base64 آمن لـ URL:</string>
+    <string name="btn_create_link">إنشاء الرابط</string>
+    <string name="btn_copy_link">نسخ الرابط</string>
+    <string name="btn_selftest">اختبار الرابط الآن</string>
+    <string name="btn_close">إغلاق</string>
+
+    <!-- Auto Upload & Telemetry -->
+    <string name="label_report_url">عنوان واجهة إرسال التقرير</string>
+    <string name="hint_report_url">مثال: https://api.example.com/diagnostics/report</string>
+    <string name="optional_tag">(اختياري)</string>
+    <string name="switch_auto_report">إرسال التقرير تلقائياً عند اكتمال الفحص</string>
+    <string name="report_upload_status_idle">الإرسال التلقائي جاهز</string>
+    <string name="report_upload_status_uploading">جارٍ إرسال تقرير الفحص...</string>
+    <string name="report_upload_status_success">تم إرسال التقرير بنجاح (HTTP %1$d)</string>
+    <string name="report_upload_status_failed">فشل الإرسال: %1$s</string>
+    <string name="btn_manual_report">إرسال الآن</string>
+    <string name="param_report_url_included">يتضمن معلمة رابط الإرسال</string>
+</resources>

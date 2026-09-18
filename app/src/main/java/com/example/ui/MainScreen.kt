@@ -93,6 +93,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
@@ -114,18 +116,7 @@ import com.example.network.PingSummary
 import com.example.network.TcpProbeResult
 import com.example.network.TcpSummary
 import com.example.network.TracerouteHop
-import com.example.ui.theme.CyanNeon
-import com.example.ui.theme.ElectricBlue
-import com.example.ui.theme.MintNeon
-import com.example.ui.theme.StatusError
-import com.example.ui.theme.StatusSuccess
-import com.example.ui.theme.StatusWarning
-import com.example.ui.theme.TechNavyBorder
-import com.example.ui.theme.TechNavyCard
-import com.example.ui.theme.TechNavySurface
-import com.example.ui.theme.TextMuted
-import com.example.ui.theme.TextPrimary
-import com.example.ui.theme.TextSecondary
+import com.example.ui.theme.*
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -137,108 +128,65 @@ fun MainScreen(viewModel: NetworkViewModel) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val reports by viewModel.reportsList.collectAsStateWithLifecycle()
 
-    var showLangMenu by remember { mutableStateOf(false) }
-
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Box(
-                            modifier = Modifier
-                                .size(10.dp)
-                                .clip(CircleShape)
-                                .background(
-                                    if (uiState.networkInfo?.isConnected == true) MintNeon else StatusError
+                        // Blue Squircle with Network Icon
+                        Surface(
+                            shape = RoundedCornerShape(10.dp),
+                            color = BrandBlue,
+                            modifier = Modifier.size(36.dp)
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Icon(
+                                    imageVector = Icons.Default.Dns,
+                                    contentDescription = null,
+                                    tint = Color.White,
+                                    modifier = Modifier.size(20.dp)
                                 )
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
+                            }
+                        }
+                        Spacer(modifier = Modifier.width(10.dp))
                         Column {
                             Text(
                                 text = stringResource(R.string.app_name),
                                 fontWeight = FontWeight.Bold,
-                                style = MaterialTheme.typography.titleMedium,
-                                color = TextPrimary
+                                fontSize = 16.sp,
+                                color = TextSlatePrimary
                             )
                             Text(
-                                text = uiState.networkInfo?.let {
-                                    "${it.networkType} • ${it.localIpv4}"
-                                } ?: stringResource(R.string.status_ready),
-                                style = MaterialTheme.typography.labelSmall,
-                                color = CyanNeon
+                                text = stringResource(R.string.app_subtitle),
+                                fontSize = 11.sp,
+                                color = TextSlateSecondary
                             )
                         }
                     }
                 },
                 actions = {
-                    // DeepLink Info Button
-                    IconButton(
-                        onClick = { viewModel.setDeepLinkDialogVisible(true) },
-                        modifier = Modifier.testTag("btn_deeplink_action")
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Link,
-                            contentDescription = stringResource(R.string.btn_deeplink_info),
-                            tint = CyanNeon
-                        )
-                    }
-
-                    // Refresh Button
-                    val infiniteTransition = rememberInfiniteTransition(label = "refresh")
-                    val rotation by infiniteTransition.animateFloat(
-                        initialValue = 0f,
-                        targetValue = 360f,
-                        animationSpec = infiniteRepeatable(
-                            animation = tween(1000, easing = LinearEasing),
-                            repeatMode = RepeatMode.Restart
-                        ),
-                        label = "spin"
+                    // Flag Switchers: 🇨🇳, 🇺🇸, 🇸🇦
+                    LanguageFlagButton(
+                        flag = "🇨🇳",
+                        isSelected = uiState.selectedLanguage == AppLanguage.CHINESE,
+                        onClick = { viewModel.setLanguage(AppLanguage.CHINESE) }
                     )
-
-                    IconButton(
-                        onClick = { viewModel.refreshNetworkInfo() },
-                        modifier = Modifier.testTag("btn_refresh_action")
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Refresh,
-                            contentDescription = stringResource(R.string.net_refresh),
-                            tint = TextPrimary,
-                            modifier = if (uiState.isNetworkRefreshing) Modifier.rotate(rotation) else Modifier
-                        )
-                    }
-
-                    // Language Selector
-                    Box {
-                        IconButton(onClick = { showLangMenu = true }) {
-                            Icon(
-                                imageVector = Icons.Default.Language,
-                                contentDescription = stringResource(R.string.language_switch),
-                                tint = TextSecondary
-                            )
-                        }
-                        DropdownMenu(
-                            expanded = showLangMenu,
-                            onDismissRequest = { showLangMenu = false }
-                        ) {
-                            DropdownMenuItem(
-                                text = { Text(stringResource(R.string.lang_english)) },
-                                onClick = {
-                                    viewModel.setLanguage(AppLanguage.ENGLISH)
-                                    showLangMenu = false
-                                }
-                            )
-                            DropdownMenuItem(
-                                text = { Text(stringResource(R.string.lang_chinese)) },
-                                onClick = {
-                                    viewModel.setLanguage(AppLanguage.CHINESE)
-                                    showLangMenu = false
-                                }
-                            )
-                        }
-                    }
+                    Spacer(modifier = Modifier.width(4.dp))
+                    LanguageFlagButton(
+                        flag = "🇺🇸",
+                        isSelected = uiState.selectedLanguage == AppLanguage.ENGLISH,
+                        onClick = { viewModel.setLanguage(AppLanguage.ENGLISH) }
+                    )
+                    Spacer(modifier = Modifier.width(4.dp))
+                    LanguageFlagButton(
+                        flag = "🇸🇦",
+                        isSelected = uiState.selectedLanguage == AppLanguage.ARABIC,
+                        onClick = { viewModel.setLanguage(AppLanguage.ARABIC) }
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = TechNavySurface
+                    containerColor = Color.White
                 )
             )
         },
@@ -258,10 +206,11 @@ fun MainScreen(viewModel: NetworkViewModel) {
             // Content Area based on Selected Tab
             Box(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxWidth()
                     .weight(1f)
             ) {
                 when (uiState.currentTab) {
+                    DiagnosticTab.DNS_SERVER -> DnsServerInspectionTab(viewModel, uiState)
                     DiagnosticTab.OVERVIEW -> OverviewTab(viewModel, uiState)
                     DiagnosticTab.PING -> PingTab(viewModel, uiState)
                     DiagnosticTab.TCP -> TcpTab(viewModel, uiState)
@@ -294,6 +243,35 @@ fun MainScreen(viewModel: NetworkViewModel) {
 }
 
 @Composable
+fun LanguageFlagButton(
+    flag: String,
+    isSelected: Boolean,
+    onClick: () -> Unit
+) {
+    Surface(
+        shape = RoundedCornerShape(8.dp),
+        color = if (isSelected) BrandLightBlueBg else Color(0xFFF1F5F9),
+        border = androidx.compose.foundation.BorderStroke(
+            1.dp,
+            if (isSelected) BrandBlue else SurfaceCardBorder
+        ),
+        modifier = Modifier
+            .clickable(onClick = onClick)
+            .testTag("btn_lang_$flag")
+    ) {
+        Box(
+            modifier = Modifier.padding(horizontal = 7.dp, vertical = 4.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = flag,
+                fontSize = 14.sp
+            )
+        }
+    }
+}
+
+@Composable
 fun TabNavigationRow(
     selectedTab: DiagnosticTab,
     onTabSelected: (DiagnosticTab) -> Unit
@@ -302,7 +280,7 @@ fun TabNavigationRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(TechNavySurface)
+            .background(Color.White)
             .horizontalScroll(scrollState)
             .padding(horizontal = 12.dp, vertical = 8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -310,6 +288,7 @@ fun TabNavigationRow(
         DiagnosticTab.entries.forEach { tab ->
             val isSelected = tab == selectedTab
             val label = when (tab) {
+                DiagnosticTab.DNS_SERVER -> stringResource(R.string.tab_dns_server)
                 DiagnosticTab.OVERVIEW -> stringResource(R.string.tab_overview)
                 DiagnosticTab.PING -> stringResource(R.string.tab_ping)
                 DiagnosticTab.TCP -> stringResource(R.string.tab_tcp)
@@ -318,10 +297,11 @@ fun TabNavigationRow(
                 DiagnosticTab.HISTORY -> stringResource(R.string.tab_history)
             }
             val icon = when (tab) {
+                DiagnosticTab.DNS_SERVER -> Icons.Default.Dns
                 DiagnosticTab.OVERVIEW -> Icons.Default.Speed
                 DiagnosticTab.PING -> Icons.Default.SwapVert
                 DiagnosticTab.TCP -> Icons.Default.NetworkCheck
-                DiagnosticTab.DNS -> Icons.Default.Dns
+                DiagnosticTab.DNS -> Icons.Default.Language
                 DiagnosticTab.TRACEROUTE -> Icons.Default.Route
                 DiagnosticTab.HISTORY -> Icons.Default.History
             }
@@ -341,21 +321,22 @@ fun TabNavigationRow(
                         imageVector = icon,
                         contentDescription = null,
                         modifier = Modifier.size(16.dp),
-                        tint = if (isSelected) CyanNeon else TextSecondary
+                        tint = if (isSelected) BrandBlue else TextSlateSecondary
                     )
                 },
                 colors = FilterChipDefaults.filterChipColors(
-                    selectedContainerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.6f),
-                    selectedLabelColor = CyanNeon,
-                    containerColor = TechNavyCard,
-                    labelColor = TextSecondary
+                    selectedContainerColor = BrandLightBlueBg,
+                    selectedLabelColor = BrandBlue,
+                    containerColor = Color(0xFFF1F5F9),
+                    labelColor = TextSlateSecondary
                 ),
                 border = FilterChipDefaults.filterChipBorder(
                     enabled = true,
                     selected = isSelected,
-                    borderColor = TechNavyBorder,
-                    selectedBorderColor = CyanNeon
+                    borderColor = SurfaceCardBorder,
+                    selectedBorderColor = BrandBlue
                 ),
+                shape = RoundedCornerShape(10.dp),
                 modifier = Modifier.testTag("tab_${tab.name.lowercase()}")
             )
         }
@@ -369,6 +350,8 @@ fun TabNavigationRow(
 fun OverviewTab(viewModel: NetworkViewModel, uiState: DiagnosticUiState) {
     val scrollState = rememberScrollState()
     var fullTargetHost by remember { mutableStateOf("google.com") }
+    val focusManager = LocalFocusManager.current
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     Column(
         modifier = Modifier
@@ -418,6 +401,11 @@ fun OverviewTab(viewModel: NetworkViewModel, uiState: DiagnosticUiState) {
                     onValueChange = { fullTargetHost = it },
                     label = { Text(stringResource(R.string.target_host)) },
                     singleLine = true,
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                    keyboardActions = KeyboardActions(onDone = {
+                        focusManager.clearFocus()
+                        keyboardController?.hide()
+                    }),
                     modifier = Modifier
                         .fillMaxWidth()
                         .testTag("input_full_diag_host"),
@@ -468,7 +456,11 @@ fun OverviewTab(viewModel: NetworkViewModel, uiState: DiagnosticUiState) {
                     }
                 } else {
                     Button(
-                        onClick = { viewModel.runFullDiagnostic(fullTargetHost) },
+                        onClick = {
+                            focusManager.clearFocus()
+                            keyboardController?.hide()
+                            viewModel.runFullDiagnostic(fullTargetHost)
+                        },
                         modifier = Modifier
                             .fillMaxWidth()
                             .testTag("btn_start_full_diag"),
@@ -689,6 +681,8 @@ fun PingTab(viewModel: NetworkViewModel, uiState: DiagnosticUiState) {
     val context = LocalContext.current
     val packets = uiState.pingPackets
     val summary = uiState.pingSummary
+    val focusManager = LocalFocusManager.current
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     Column(
         modifier = Modifier
@@ -709,6 +703,11 @@ fun PingTab(viewModel: NetworkViewModel, uiState: DiagnosticUiState) {
                     onValueChange = { viewModel.updatePingHost(it) },
                     label = { Text(stringResource(R.string.target_host)) },
                     singleLine = true,
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                    keyboardActions = KeyboardActions(onDone = {
+                        focusManager.clearFocus()
+                        keyboardController?.hide()
+                    }),
                     modifier = Modifier
                         .fillMaxWidth()
                         .testTag("input_ping_host"),
@@ -762,7 +761,11 @@ fun PingTab(viewModel: NetworkViewModel, uiState: DiagnosticUiState) {
                         }
                     } else {
                         Button(
-                            onClick = { viewModel.startPing() },
+                            onClick = {
+                                focusManager.clearFocus()
+                                keyboardController?.hide()
+                                viewModel.startPing()
+                            },
                             colors = ButtonDefaults.buttonColors(containerColor = CyanNeon, contentColor = Color(0xFF00373D)),
                             shape = RoundedCornerShape(10.dp),
                             modifier = Modifier.testTag("btn_start_ping")
@@ -894,6 +897,8 @@ fun PingTab(viewModel: NetworkViewModel, uiState: DiagnosticUiState) {
 fun TcpTab(viewModel: NetworkViewModel, uiState: DiagnosticUiState) {
     val results = uiState.tcpResults
     val summary = uiState.tcpSummary
+    val focusManager = LocalFocusManager.current
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     Column(
         modifier = Modifier
@@ -917,6 +922,7 @@ fun TcpTab(viewModel: NetworkViewModel, uiState: DiagnosticUiState) {
                         onValueChange = { viewModel.updateTcpHost(it) },
                         label = { Text(stringResource(R.string.target_host)) },
                         singleLine = true,
+                        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
                         modifier = Modifier
                             .weight(2f)
                             .testTag("input_tcp_host"),
@@ -927,7 +933,14 @@ fun TcpTab(viewModel: NetworkViewModel, uiState: DiagnosticUiState) {
                         value = uiState.tcpPort.toString(),
                         onValueChange = { viewModel.updateTcpPort(it.toIntOrNull() ?: 0) },
                         label = { Text(stringResource(R.string.target_port)) },
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Number,
+                            imeAction = ImeAction.Done
+                        ),
+                        keyboardActions = KeyboardActions(onDone = {
+                            focusManager.clearFocus()
+                            keyboardController?.hide()
+                        }),
                         singleLine = true,
                         modifier = Modifier
                             .weight(1f)
@@ -978,7 +991,11 @@ fun TcpTab(viewModel: NetworkViewModel, uiState: DiagnosticUiState) {
                     }
                 } else {
                     Button(
-                        onClick = { viewModel.startTcpTest() },
+                        onClick = {
+                            focusManager.clearFocus()
+                            keyboardController?.hide()
+                            viewModel.startTcpTest()
+                        },
                         colors = ButtonDefaults.buttonColors(containerColor = CyanNeon, contentColor = Color(0xFF00373D)),
                         modifier = Modifier
                             .fillMaxWidth()
@@ -1095,6 +1112,8 @@ fun TcpTab(viewModel: NetworkViewModel, uiState: DiagnosticUiState) {
 fun DnsTab(viewModel: NetworkViewModel, uiState: DiagnosticUiState) {
     val report = uiState.dnsReport
     val net = uiState.networkInfo
+    val focusManager = LocalFocusManager.current
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     Column(
         modifier = Modifier
@@ -1115,6 +1134,11 @@ fun DnsTab(viewModel: NetworkViewModel, uiState: DiagnosticUiState) {
                     onValueChange = { viewModel.updateDnsDomain(it) },
                     label = { Text(stringResource(R.string.dns_query_domain)) },
                     singleLine = true,
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                    keyboardActions = KeyboardActions(onDone = {
+                        focusManager.clearFocus()
+                        keyboardController?.hide()
+                    }),
                     modifier = Modifier
                         .fillMaxWidth()
                         .testTag("input_dns_domain"),
@@ -1150,7 +1174,11 @@ fun DnsTab(viewModel: NetworkViewModel, uiState: DiagnosticUiState) {
                     }
                 } else {
                     Button(
-                        onClick = { viewModel.startDnsBenchmark() },
+                        onClick = {
+                            focusManager.clearFocus()
+                            keyboardController?.hide()
+                            viewModel.startDnsBenchmark()
+                        },
                         colors = ButtonDefaults.buttonColors(containerColor = CyanNeon, contentColor = Color(0xFF00373D)),
                         modifier = Modifier
                             .fillMaxWidth()
@@ -1329,6 +1357,8 @@ fun DnsBenchmarkItem(bench: DnsBenchmarkResult) {
 fun TracerouteTab(viewModel: NetworkViewModel, uiState: DiagnosticUiState) {
     val hops = uiState.traceHops
     val report = uiState.traceReport
+    val focusManager = LocalFocusManager.current
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     Column(
         modifier = Modifier
@@ -1348,6 +1378,11 @@ fun TracerouteTab(viewModel: NetworkViewModel, uiState: DiagnosticUiState) {
                     onValueChange = { viewModel.updateTraceHost(it) },
                     label = { Text(stringResource(R.string.target_host)) },
                     singleLine = true,
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                    keyboardActions = KeyboardActions(onDone = {
+                        focusManager.clearFocus()
+                        keyboardController?.hide()
+                    }),
                     modifier = Modifier
                         .fillMaxWidth()
                         .testTag("input_trace_host"),
@@ -1370,7 +1405,11 @@ fun TracerouteTab(viewModel: NetworkViewModel, uiState: DiagnosticUiState) {
                     }
                 } else {
                     Button(
-                        onClick = { viewModel.startTraceroute() },
+                        onClick = {
+                            focusManager.clearFocus()
+                            keyboardController?.hide()
+                            viewModel.startTraceroute()
+                        },
                         colors = ButtonDefaults.buttonColors(containerColor = CyanNeon, contentColor = Color(0xFF00373D)),
                         modifier = Modifier
                             .fillMaxWidth()

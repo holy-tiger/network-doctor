@@ -6,55 +6,55 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-private val DarkColorScheme = darkColorScheme(
-  primary = CyanNeon,
-  onPrimary = Color(0xFF00373D),
-  primaryContainer = Color(0xFF004F56),
-  onPrimaryContainer = Color(0xFF70F5FF),
-  secondary = MintNeon,
-  onSecondary = Color(0xFF00391A),
-  secondaryContainer = Color(0xFF005328),
-  onSecondaryContainer = Color(0xFF7CFFAC),
-  tertiary = ElectricBlue,
-  onTertiary = Color(0xFF002B73),
-  background = TechNavyBg,
-  onBackground = TextPrimary,
-  surface = TechNavySurface,
-  onSurface = TextPrimary,
-  surfaceVariant = TechNavySurfaceVariant,
-  onSurfaceVariant = TextSecondary,
-  outline = TechNavyBorder,
-  outlineVariant = Color(0xFF1E2A47),
-  error = StatusError,
+private val LightColorScheme = lightColorScheme(
+  primary = BrandBlue,
+  onPrimary = Color.White,
+  primaryContainer = BrandLightBlueBg,
+  onPrimaryContainer = BrandBlueDark,
+  secondary = EmeraldGreen,
+  onSecondary = Color.White,
+  secondaryContainer = EmeraldGreenBg,
+  onSecondaryContainer = EmeraldGreenDark,
+  tertiary = BrandIndigo,
+  onTertiary = Color.White,
+  background = AppBgLight,
+  onBackground = TextSlatePrimary,
+  surface = SurfaceCardLight,
+  onSurface = TextSlatePrimary,
+  surfaceVariant = Color(0xFFF1F5F9),
+  onSurfaceVariant = TextSlateSecondary,
+  outline = SurfaceCardBorder,
+  outlineVariant = Color(0xFFF1F5F9),
+  error = CrimsonRed,
   onError = Color.White
 )
 
-private val LightColorScheme = lightColorScheme(
-  primary = Color(0xFF006874),
+private val DarkColorScheme = darkColorScheme(
+  primary = BrandBlue,
   onPrimary = Color.White,
-  primaryContainer = Color(0xFF9EEFFD),
-  onPrimaryContainer = Color(0xFF001F24),
-  secondary = Color(0xFF006D38),
+  primaryContainer = Color(0xFF1E3A8A),
+  onPrimaryContainer = Color(0xFFBFDBFE),
+  secondary = EmeraldGreen,
   onSecondary = Color.White,
-  secondaryContainer = Color(0xFF9AF6B2),
-  onSecondaryContainer = Color(0xFF00210C),
-  tertiary = Color(0xFF0056D2),
+  secondaryContainer = Color(0xFF064E3B),
+  onSecondaryContainer = Color(0xFFA7F3D0),
+  tertiary = BrandIndigo,
   onTertiary = Color.White,
-  background = Color(0xFFF8FAFC),
-  onBackground = Color(0xFF0F172A),
-  surface = Color(0xFFFFFFFF),
-  onSurface = Color(0xFF0F172A),
-  surfaceVariant = Color(0xFFE2E8F0),
-  onSurfaceVariant = Color(0xFF475569),
-  outline = Color(0xFFCBD5E1),
-  outlineVariant = Color(0xFFE2E8F0),
-  error = Color(0xFFBA1A1A),
+  background = Color(0xFF0F172A),
+  onBackground = Color(0xFFF8FAFC),
+  surface = Color(0xFF1E293B),
+  onSurface = Color(0xFFF8FAFC),
+  surfaceVariant = Color(0xFF334155),
+  onSurfaceVariant = Color(0xFF94A3B8),
+  outline = Color(0xFF475569),
+  outlineVariant = Color(0xFF334155),
+  error = CrimsonRed,
   onError = Color.White
 )
 
 @Composable
 fun NetDiagTheme(
-  darkTheme: Boolean = true, // Network diagnostics looks best in focused dark cyber theme by default
+  darkTheme: Boolean = false, // Default to light modern clean theme matching reference design
   content: @Composable () -> Unit,
 ) {
   val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme

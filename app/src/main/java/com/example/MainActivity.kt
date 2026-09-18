@@ -17,6 +17,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.ui.AppLanguage
 import com.example.ui.MainScreen
@@ -70,6 +72,7 @@ fun LocalizedApp(
     val targetLocale = when (language) {
         AppLanguage.ENGLISH -> Locale.ENGLISH
         AppLanguage.CHINESE -> Locale.SIMPLIFIED_CHINESE
+        AppLanguage.ARABIC -> Locale("ar")
         AppLanguage.SYSTEM -> null
     }
 
@@ -83,10 +86,12 @@ fun LocalizedApp(
         val localizedContext = remember(targetLocale, currentContext) {
             currentContext.createConfigurationContext(localizedConfig)
         }
+        val layoutDirection = if (targetLocale.language == "ar") LayoutDirection.Rtl else LayoutDirection.Ltr
 
         CompositionLocalProvider(
             LocalConfiguration provides localizedConfig,
-            LocalContext provides localizedContext
+            LocalContext provides localizedContext,
+            LocalLayoutDirection provides layoutDirection
         ) {
             content()
         }

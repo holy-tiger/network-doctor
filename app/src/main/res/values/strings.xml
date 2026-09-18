@@ -1,14 +1,73 @@
 <resources>
-    <string name="app_name">NetDiag</string>
-    <string name="app_tagline">Network Diagnostics &amp; Telemetry</string>
+    <string name="app_name">DNS &amp; Server Check</string>
+    <string name="app_subtitle">DNS &amp; Server Diagnostic</string>
+    <string name="app_tagline">DNS &amp; Server Diagnostic Telemetry</string>
     
+    <!-- Header & Languages -->
+    <string name="snapshot_btn">Snapshots</string>
+    <string name="lang_arabic">العربية</string>
+    <string name="lang_english">English</string>
+    <string name="lang_chinese">简体中文</string>
+    <string name="language_switch">Language Switcher</string>
+
     <!-- Navigation / Tabs -->
+    <string name="tab_dns_server">DNS &amp; Server</string>
     <string name="tab_overview">Overview</string>
     <string name="tab_ping">Ping</string>
     <string name="tab_tcp">TCP Connect</string>
-    <string name="tab_dns">DNS Latency</string>
+    <string name="tab_dns">DNS Bench</string>
     <string name="tab_trace">Traceroute</string>
     <string name="tab_history">History</string>
+
+    <!-- Target input card -->
+    <string name="target_input_title">Target Addresses / Domains</string>
+    <string name="target_input_subtitle">Support entering domain names, URLs, or IP addresses (one per line or comma-separated)</string>
+    <string name="btn_generate_test_link">Generate Link</string>
+    <string name="btn_advanced_settings">Advanced Settings</string>
+    <string name="btn_clear_input">Clear</string>
+    <string name="ready_addresses_count">Ready %1$d addresses</string>
+    <string name="quick_presets_title">Quick Presets</string>
+    <string name="preset_healthy_domains">Common Healthy Domains</string>
+    <string name="preset_anomaly_domains">Fault &amp; Anomaly Control</string>
+    <string name="btn_start_full_inspection">Start Diagnostic</string>
+    <string name="btn_stop_inspection">Stop Diagnostic</string>
+    <string name="jump_to_results">View Results (%1$d) ▾</string>
+
+    <!-- Summary Stats -->
+    <string name="stat_total_targets">Total Targets</string>
+    <string name="stat_healthy_connected">Connected &amp; Healthy</string>
+    <string name="stat_abnormal_failed">Abnormal / Failed</string>
+    <string name="stat_avg_latency">Avg Total Latency</string>
+
+    <!-- Filter & Action Bar -->
+    <string name="filter_all">All (%1$d)</string>
+    <string name="filter_failed">Failed/Abnormal (%1$d)</string>
+    <string name="filter_healthy">Healthy Only (%1$d)</string>
+    <string name="search_placeholder">Search domain or IP...</string>
+    <string name="btn_copy_brief">Copy Brief</string>
+    <string name="btn_export_json">Export JSON</string>
+    <string name="btn_save_report">Save Snapshot</string>
+
+    <!-- Results List -->
+    <string name="results_list_title">Results List (Showing %1$d / %2$d)</string>
+    <string name="view_full_markdown_report">View Full Markdown Report ➔</string>
+    <string name="badge_status_healthy">Connected &amp; Healthy</string>
+    <string name="badge_status_failed">Failed / Unhealthy</string>
+    <string name="metric_dns_resolution">DNS Lookup</string>
+    <string name="metric_tcp_connect">TCP Connect</string>
+    <string name="metric_tls_cert">TLS Certificate</string>
+    <string name="metric_http_response">HTTP Response</string>
+    <string name="status_ok">Normal</string>
+    <string name="status_fail">Failed</string>
+    <string name="status_warning">Warning</string>
+    <string name="status_not_tested">Pending</string>
+    <string name="cert_valid_days">Valid for %1$d days</string>
+    <string name="cert_expired">Certificate Expired</string>
+    <string name="port_prefix">Port: %1$d</string>
+    <string name="http_status_prefix">HTTP Status: %1$s</string>
+    <string name="resolved_ip_label">Resolved IP:</string>
+    <string name="expand_tech_details">Expand Tech Details (A/AAAA/Cert/Headers) ▾</string>
+    <string name="collapse_tech_details">Collapse Tech Details ▴</string>
 
     <!-- Network Info Cards -->
     <string name="net_info_title">Network Interface</string>
@@ -98,9 +157,24 @@
     <string name="deeplink_sample_dns">netdiag://test?type=dns&amp;host=github.com</string>
     <string name="deeplink_sample_trace">netdiag://test?type=traceroute&amp;host=8.8.8.8</string>
     <string name="deeplink_sample_full">netdiag://test?type=fulldiag&amp;host=cloudflare.com</string>
+    <string name="deeplink_generated_title">Test DeepLink Generated</string>
+    <string name="deeplink_generated_hint">Generated URL-Safe Base64 diagnostic deep link. Opening this link will automatically navigate to DNS inspection and start testing:</string>
+    <string name="generate_dialog_title">Generate Test DeepLink</string>
+    <string name="generate_dialog_desc">Please specify an optional reporting endpoint. The target list and reporting URL will be encoded into a URL-Safe Base64 link for one-click diagnostic execution:</string>
+    <string name="btn_create_link">Generate Link</string>
+    <string name="btn_copy_link">Copy Link</string>
+    <string name="btn_selftest">Test Link Now</string>
+    <string name="btn_close">Close</string>
 
-    <!-- Language -->
-    <string name="language_switch">Language / 语言</string>
-    <string name="lang_english">English</string>
-    <string name="lang_chinese">简体中文</string>
+    <!-- Auto Upload & Telemetry -->
+    <string name="label_report_url">Report Callback Endpoint</string>
+    <string name="hint_report_url">e.g. https://api.example.com/diagnostics/report</string>
+    <string name="optional_tag">(Optional)</string>
+    <string name="switch_auto_report">Auto-report results on completion</string>
+    <string name="report_upload_status_idle">Auto-report ready</string>
+    <string name="report_upload_status_uploading">Uploading diagnostic report...</string>
+    <string name="report_upload_status_success">Report reported successfully (HTTP %1$d)</string>
+    <string name="report_upload_status_failed">Failed to report: %1$s</string>
+    <string name="btn_manual_report">Report Now</string>
+    <string name="param_report_url_included">Includes report callback parameter</string>
 </resources>

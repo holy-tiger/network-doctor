@@ -1,14 +1,73 @@
 <resources>
-    <string name="app_name">NetDiag</string>
-    <string name="app_tagline">专业网络诊断与链路遥测</string>
+    <string name="app_name">DNS &amp; 服务器检测</string>
+    <string name="app_subtitle">DNS 解析与服务器链路综合诊断</string>
+    <string name="app_tagline">DNS 解析与服务器链路综合诊断</string>
     
+    <!-- Header & Languages -->
+    <string name="snapshot_btn">快照</string>
+    <string name="lang_arabic">العربية</string>
+    <string name="lang_english">English</string>
+    <string name="lang_chinese">简体中文</string>
+    <string name="language_switch">切换语言</string>
+
     <!-- Navigation / Tabs -->
+    <string name="tab_dns_server">DNS与服务器</string>
     <string name="tab_overview">全览概况</string>
     <string name="tab_ping">Ping 测试</string>
     <string name="tab_tcp">TCP 握手</string>
-    <string name="tab_dns">DNS 耗时</string>
+    <string name="tab_dns">DNS 对比</string>
     <string name="tab_trace">路由追踪</string>
     <string name="tab_history">历史报告</string>
+
+    <!-- Target input card -->
+    <string name="target_input_title">需要检测的目标地址 / 域名</string>
+    <string name="target_input_subtitle">支持直接输入域名、URL 或 IP 地址，每一行一个或逗号隔开</string>
+    <string name="btn_generate_test_link">生成测试链接</string>
+    <string name="btn_advanced_settings">高级设置</string>
+    <string name="btn_clear_input">清空</string>
+    <string name="ready_addresses_count">已就绪 %1$d 个地址</string>
+    <string name="quick_presets_title">快速预设</string>
+    <string name="preset_healthy_domains">常见健康域名</string>
+    <string name="preset_anomaly_domains">故障与异常对照组</string>
+    <string name="btn_start_full_inspection">开始全面检测</string>
+    <string name="btn_stop_inspection">停止检测</string>
+    <string name="jump_to_results">查看下方结果 (%1$d) ▾</string>
+
+    <!-- Summary Stats -->
+    <string name="stat_total_targets">总检测地址</string>
+    <string name="stat_healthy_connected">正常可连通</string>
+    <string name="stat_abnormal_failed">异常 / 失败</string>
+    <string name="stat_avg_latency">平均总耗时</string>
+
+    <!-- Filter & Action Bar -->
+    <string name="filter_all">全部 (%1$d)</string>
+    <string name="filter_failed">仅失败/异常 (%1$d)</string>
+    <string name="filter_healthy">仅正常 (%1$d)</string>
+    <string name="search_placeholder">搜索域名或 IP...</string>
+    <string name="btn_copy_brief">复制简报</string>
+    <string name="btn_export_json">导出 JSON</string>
+    <string name="btn_save_report">上报保存结果</string>
+
+    <!-- Results List -->
+    <string name="results_list_title">检测结果列表 (展示 %1$d / %2$d 项)</string>
+    <string name="view_full_markdown_report">查看完整 Markdown 报告 ➔</string>
+    <string name="badge_status_healthy">正常可连通</string>
+    <string name="badge_status_failed">异常/不可达</string>
+    <string name="metric_dns_resolution">DNS 解析</string>
+    <string name="metric_tcp_connect">TCP 连通</string>
+    <string name="metric_tls_cert">TLS 证书</string>
+    <string name="metric_http_response">HTTP 响应</string>
+    <string name="status_ok">正常</string>
+    <string name="status_fail">失败</string>
+    <string name="status_warning">异常</string>
+    <string name="status_not_tested">未测试</string>
+    <string name="cert_valid_days">有效剩 %1$d 天</string>
+    <string name="cert_expired">证书已过期</string>
+    <string name="port_prefix">端口: %1$d</string>
+    <string name="http_status_prefix">HTTP 状态: %1$s</string>
+    <string name="resolved_ip_label">解析 IP:</string>
+    <string name="expand_tech_details">展开技术详情 (A/AAAA记录/证书/Header) ▾</string>
+    <string name="collapse_tech_details">收起技术详情 ▴</string>
 
     <!-- Network Info Cards -->
     <string name="net_info_title">网络接口信息</string>
@@ -98,9 +157,24 @@
     <string name="deeplink_sample_dns">netdiag://test?type=dns&amp;host=github.com</string>
     <string name="deeplink_sample_trace">netdiag://test?type=traceroute&amp;host=8.8.8.8</string>
     <string name="deeplink_sample_full">netdiag://test?type=fulldiag&amp;host=cloudflare.com</string>
+    <string name="deeplink_generated_title">测试 DeepLink 已生成</string>
+    <string name="deeplink_generated_hint">已生成 URL-Safe Base64 编码的诊断深度链接，打开链接可自动进入 DNS 检测页面并启动诊断：</string>
+    <string name="generate_dialog_title">生成测试 DeepLink 链接</string>
+    <string name="generate_dialog_desc">可在此输入检测完成后的数据上报接口地址。目标地址列表与上报地址均将采用 URL 安全 Base64 进行编码，便于一键分发或集成触发：</string>
+    <string name="btn_create_link">生成测试链接</string>
+    <string name="btn_copy_link">复制链接</string>
+    <string name="btn_selftest">立即自测启动</string>
+    <string name="btn_close">关闭</string>
 
-    <!-- Language -->
-    <string name="language_switch">语言 / Language</string>
-    <string name="lang_english">English</string>
-    <string name="lang_chinese">简体中文</string>
+    <!-- Auto Upload & Telemetry -->
+    <string name="label_report_url">结果上报回调接口地址</string>
+    <string name="hint_report_url">例如: https://api.example.com/diagnostics/report</string>
+    <string name="optional_tag">(选填)</string>
+    <string name="switch_auto_report">检测完成后自动上报诊断结果</string>
+    <string name="report_upload_status_idle">自动上报就绪</string>
+    <string name="report_upload_status_uploading">正在自动上报检测结果...</string>
+    <string name="report_upload_status_success">诊断结果已成功上报 (HTTP %1$d)</string>
+    <string name="report_upload_status_failed">上报失败: %1$s</string>
+    <string name="btn_manual_report">立即上报</string>
+    <string name="param_report_url_included">已包含上报回调地址参数</string>
 </resources>

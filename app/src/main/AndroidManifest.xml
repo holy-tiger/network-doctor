@@ -19,21 +19,19 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:windowSoftInputMode="adjustResize"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/Theme.MyApplication">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <!-- Custom Scheme DeepLink: netdiag://test?type=...&host=...&port=... -->
+            <!-- Custom Scheme DeepLink: netdiag://inspect?data=... or netdiag://test?... -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data
-                    android:scheme="netdiag"
-                    android:host="test" />
+                <data android:scheme="netdiag" />
             </intent-filter>
 
             <!-- AppLink HTTP / HTTPS DeepLink -->

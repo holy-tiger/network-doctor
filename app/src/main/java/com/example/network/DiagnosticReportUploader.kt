@@ -213,10 +213,17 @@ object DiagnosticReportUploader {
                 )
             }
         } catch (e: Exception) {
-            Log.e(TAG, "Exception uploading diagnostic report to $endpointUrl: ${e.message}", e)
+            val isUnknownHost = e is java.net.UnknownHostException || e.message?.contains("Unable to resolve host", ignoreCase = true) == true
+            val friendlyMsg = if (isUnknownHost) {
+                val host = try { URL(endpointUrl).host } catch (_: Exception) { "" }
+                "上报域名解析失败(未分配IP或域名不存在): $host"
+            } else {
+                e.message ?: e.javaClass.simpleName
+            }
+            Log.w(TAG, "Failed uploading report to $endpointUrl: $friendlyMsg")
             UploadResult.Failed(
                 statusCode = null,
-                errorMessage = e.message ?: e.javaClass.simpleName
+                errorMessage = friendlyMsg
             )
         } finally {
             conn?.disconnect()
